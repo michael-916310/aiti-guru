@@ -50,7 +50,7 @@ export function LoginForm() {
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         <div className={styles.field}>
           <label className={styles.label} htmlFor="login-username">
-            Логин или email
+            Почта
           </label>
           <input
             id="login-username"
@@ -100,24 +100,32 @@ export function LoginForm() {
           </p>
         ) : null}
 
-        <div className={styles.row}>
-          <label className={styles.remember}>
-            <input
-              type="checkbox"
-              checked={remember}
-              onChange={(ev) => setRemember(ev.target.checked)}
-              disabled={submitting}
-            />
-            Запомнить данные
-          </label>
-          <button type="button" className={styles.createLink}>
-            Создать
-          </button>
-        </div>
+        <label className={styles.remember}>
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(ev) => setRemember(ev.target.checked)}
+            disabled={submitting}
+          />
+          Запомнить данные
+        </label>
 
         <button type="submit" className={styles.submit} disabled={submitting}>
           {submitting ? 'Вход…' : 'Войти'}
         </button>
+
+        <div className={styles.dividerOr} aria-hidden="true">
+          <span className={styles.dividerLine} />
+          <span className={styles.dividerText}>или</span>
+          <span className={styles.dividerLine} />
+        </div>
+
+        <p className={styles.footer}>
+          Нет аккаунта?{' '}
+          <button type="button" className={styles.createLink}>
+            Создать
+          </button>
+        </p>
       </form>
     </div>
   )

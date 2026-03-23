@@ -83,14 +83,6 @@
   border: 1px solid rgba(220, 38, 38, 0.25);
 }
 
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
 .remember {
   display: flex;
   align-items: center;
@@ -99,6 +91,7 @@
   color: var(--text);
   cursor: pointer;
   user-select: none;
+  width: fit-content;
 }
 
 .remember input {
@@ -126,6 +119,7 @@
 .submit {
   font: inherit;
   font-weight: 600;
+  width: 100%;
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -133,6 +127,34 @@
   color: #fff;
   cursor: pointer;
   transition: background-color 0.2s, opacity 0.2s;
+  box-sizing: border-box;
+}
+
+.dividerOr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 0;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.dividerText {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.footer {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.4;
 }
 
 .submit:hover:not(:disabled) {
