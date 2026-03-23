@@ -1,0 +1,130 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.dialog {
+  width: 100%;
+  max-width: 440px;
+  max-height: min(90vh, 640px);
+  overflow: auto;
+  padding: 24px;
+  border-radius: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 24px 48px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+.title {
+  margin: 0 0 20px;
+  font-family: var(--heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.input {
+  font: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgba(46, 61, 235, 0.55);
+  box-shadow: 0 0 0 3px rgba(46, 61, 235, 0.18);
+}
+
+.inputError {
+  border-color: #dc2626;
+}
+
+.fieldError {
+  margin: 0;
+  font-size: 12px;
+  color: #dc2626;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 4px;
+}
+
+.btnPrimary,
+.btnSecondary {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    opacity 0.2s;
+}
+
+.btnPrimary {
+  border: 1px solid #2e3deb;
+  background: #2e3deb;
+  color: #fff;
+}
+
+.btnPrimary:hover {
+  background: #2636d4;
+  border-color: #2636d4;
+}
+
+.btnPrimary:focus-visible {
+  outline: 2px solid #2e3deb;
+  outline-offset: 2px;
+}
+
+.btnSecondary {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.btnSecondary:hover {
+  border-color: rgba(46, 61, 235, 0.35);
+}
+
+.btnSecondary:focus-visible {
+  outline: 2px solid #2e3deb;
+  outline-offset: 2px;
+}

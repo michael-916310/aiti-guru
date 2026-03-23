@@ -65,8 +65,78 @@
 
 .toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  flex: 1 1 220px;
+  max-width: 360px;
+}
+
+.searchInput {
+  font: inherit;
+  font-size: 14px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.searchInput::placeholder {
+  color: var(--text);
+  opacity: 0.65;
+}
+
+.searchInput:hover {
+  border-color: rgba(46, 61, 235, 0.25);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: rgba(46, 61, 235, 0.55);
+  box-shadow: 0 0 0 3px rgba(46, 61, 235, 0.18);
+}
+
+.addBtn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--products-blue);
+  border-radius: 8px;
+  background: var(--products-blue);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+}
+
+.addBtn:hover:not(:disabled) {
+  background: var(--products-blue-hover);
+  border-color: var(--products-blue-hover);
+}
+
+.addBtn:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.addBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .refreshBtn {

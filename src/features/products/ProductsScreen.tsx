@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react'
 import type { Product } from '../../shared/api/endpoints'
+import { useDebouncedValue } from '../../shared/lib/useDebouncedValue'
+import { useToast } from '../../shared/ui/toast/useToast'
+import { AddProductModal } from './AddProductModal'
 import { useProducts } from './useProducts'
 import styles from './ProductsPage.module.css'
 
@@ -59,8 +62,14 @@ function SortLabel({
 }
 
 export function ProductsScreen() {
+  const [searchInput, setSearchInput] = useState('')
+  const debouncedSearch = useDebouncedValue(searchInput, 400)
+  const [addOpen, setAddOpen] = useState(false)
+  const { show: showToast } = useToast()
+
   const {
     products,
+    searchActive,
     total,
     page,
     totalPages,
@@ -70,9 +79,10 @@ export function ProductsScreen() {
     fetching,
     error,
     refetch,
+    addLocalProduct,
     showBlockingLoader,
     showTopProgress,
-  } = useProducts()
+  } = useProducts(debouncedSearch)
 
   const pageNums = visiblePageNumbers(page, totalPages)
 
@@ -107,6 +117,24 @@ export function ProductsScreen() {
       <div className={styles.headerRow}>
         <h1 className={styles.title}>Товары</h1>
         <div className={styles.toolbar}>
+          <div className={styles.searchWrap}>
+            <input
+              type="search"
+              className={styles.searchInput}
+              placeholder="Поиск"
+              value={searchInput}
+              onChange={(ev) => setSearchInput(ev.target.value)}
+              aria-label="Поиск товаров"
+              autoComplete="off"
+            />
+          </div>
+          <button
+            type="button"
+            className={styles.addBtn}
+            onClick={() => setAddOpen(true)}
+          >
+            Добавить
+          </button>
           <button
             type="button"
             className={styles.refreshBtn}
@@ -143,7 +171,11 @@ export function ProductsScreen() {
           </button>
         </div>
       ) : !products.length ? (
-        <p className={styles.empty}>Список товаров пуст.</p>
+        <p className={styles.empty}>
+          {searchActive
+            ? 'Ничего не найдено.'
+            : 'Список товаров пуст.'}
+        </p>
       ) : (
         <>
           <div className={styles.tableWrap}>
@@ -192,6 +224,7 @@ export function ProductsScreen() {
                     </button>
                   </th>
                   <th className={styles.th}>Вендор</th>
+                  <th className={styles.th}>Артикул</th>
                   <th className={styles.th} aria-label="Действия" />
                 </tr>
               </thead>
@@ -216,6 +249,7 @@ export function ProductsScreen() {
                       </span>
                     </td>
                     <td className={styles.td}>{p.brand ?? '—'}</td>
+                    <td className={styles.td}>{p.sku ?? '—'}</td>
                     <td className={`${styles.td} ${styles.actionsCell}`}>
                       <span className={styles.menuStub} title="">
                         ···
@@ -279,6 +313,15 @@ export function ProductsScreen() {
           ) : null}
         </>
       )}
+
+      <AddProductModal
+        open={addOpen}
+        onClose={() => setAddOpen(false)}
+        onSubmit={(payload) => {
+          addLocalProduct(payload)
+          showToast('Товар добавлен', 'success')
+        }}
+      />
     </div>
   )
 }

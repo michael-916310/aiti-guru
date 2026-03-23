@@ -19,6 +19,8 @@ export interface Product {
   price: number
   rating: number
   brand?: string
+  /** Present on some API products; used for locally added rows */
+  sku?: string
 }
 
 export interface ProductsResponse {
@@ -39,8 +41,41 @@ export interface ProductsPageParams {
   skip: number
 }
 
+export interface ProductsSearchParams extends ProductsPageParams {
+  q: string
+}
+
+function mapProductDto(raw: Record<string, unknown>): Product {
+  return {
+    id: Number(raw.id),
+    title: String(raw.title ?? ''),
+    price: Number(raw.price ?? 0),
+    rating: Number(raw.rating ?? 0),
+    brand:
+      raw.brand != null && String(raw.brand).trim() !== ''
+        ? String(raw.brand)
+        : undefined,
+    sku:
+      raw.sku != null && String(raw.sku).trim() !== ''
+        ? String(raw.sku)
+        : undefined,
+  }
+}
+
+export function mapProductsResponseDto(data: ProductsResponse): ProductsResponse {
+  return {
+    ...data,
+    products: data.products.map((p) =>
+      mapProductDto(p as unknown as Record<string, unknown>),
+    ),
+  }
+}
+
 export const productsApi = {
   getPage(params: ProductsPageParams) {
     return httpClient.get<ProductsResponse>('/products', { params })
+  },
+  search(params: ProductsSearchParams) {
+    return httpClient.get<ProductsResponse>('/products/search', { params })
   },
 }
