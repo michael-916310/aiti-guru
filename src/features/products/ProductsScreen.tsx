@@ -244,6 +244,11 @@ export function ProductsScreen() {
                         className={
                           p.rating < 3.5 ? styles.ratingLow : undefined
                         }
+                        aria-label={
+                          p.rating < 3.5
+                            ? `Рейтинг ${p.rating.toFixed(1)}, низкий`
+                            : `Рейтинг ${p.rating.toFixed(1)}`
+                        }
                       >
                         {p.rating.toFixed(1)}
                       </span>

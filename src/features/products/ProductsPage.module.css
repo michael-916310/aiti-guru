@@ -228,6 +228,18 @@
   vertical-align: middle;
 }
 
+.table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.table tbody tr:nth-child(2n) {
+  background: rgba(2, 6, 23, 0.02);
+}
+
+.table tbody tr:hover {
+  background: rgba(46, 61, 235, 0.05);
+}
+
 .table tbody tr:last-child .td {
   border-bottom: none;
 }
@@ -368,4 +380,42 @@
 .pageNumActive:disabled {
   opacity: 1;
   cursor: wait;
+}
+
+@media (max-width: 900px) {
+  .headerRow {
+    margin-bottom: 16px;
+  }
+
+  .toolbar {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .searchWrap {
+    min-width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+  }
+
+  .addBtn,
+  .refreshBtn {
+    flex: 1 1 auto;
+  }
+
+  .th,
+  .td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .paginationFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .paginationControls {
+    justify-content: space-between;
+  }
 }

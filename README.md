@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# ITI Guru Test Task (React + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA приложение с двумя основными экранами:
+- `Login` с интеграцией DummyJSON Auth и логикой `Remember me`.
+- `Products` со списком товаров, API-поиском, сортировкой, обновлением, локальным добавлением позиции и базовыми UI-состояниями.
 
-Currently, two official plugins are available:
+## Стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + TypeScript (strict mode)
+- Vite
+- React Router
+- Axios
+- CSS Modules
 
-## React Compiler
+## Запуск проекта
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Установить зависимости:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Создать `.env` в корне проекта:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+VITE_API_BASE_URL=https://dummyjson.com
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Запустить dev-сервер:
+
+```bash
+npm run dev
+```
+
+4. Открыть приложение в браузере по адресу из вывода Vite (обычно `http://localhost:5173`).
+
+## Скрипты
+
+- `npm run dev` - запуск в режиме разработки
+- `npm run lint` - eslint-проверка
+- `npm run typecheck` - проверка TypeScript типов
+- `npm run build` - production сборка
+- `npm run preview` - локальный preview production-сборки
+
+## Реализованный функционал
+
+### Авторизация
+
+- Форма входа с валидацией обязательных полей.
+- Интеграция `POST /auth/login` (DummyJSON).
+- Обработка ошибок API.
+- Логика `Remember me`:
+  - включено: сохранение в `localStorage`;
+  - выключено: сохранение в `sessionStorage`.
+- Защита маршрута `/products` при отсутствии токена.
+
+### Экран товаров
+
+- Загрузка списка из DummyJSON API с состояниями `loading/error/empty`.
+- Прогресс-бар при фоновом refetch и блокирующее состояние для первичной загрузки.
+- Поиск через API (`/products/search`) с debounce.
+- Сортировка по цене и рейтингу (`asc/desc`).
+- Ручной `refresh` (повторный запрос).
+- Локальное добавление товара через модальное окно.
+- Уведомление (toast) после успешного добавления.
+- UI-правило из ТЗ: рейтинг ниже `3.5` подсвечивается красным.
+
+## Принятые упрощения
+
+- Добавленные пользователем товары хранятся только локально в состоянии приложения и не отправляются в API.
+- Колонка действий (`...`) оставлена как визуальная заглушка без бизнес-логики.
+- Дизайн приближен к макету и адаптирован под desktop + базовую responsive-верстку.
+
+## Проверки перед сдачей
+
+Рекомендуемая последовательность:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
 ```
