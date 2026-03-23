@@ -31,6 +31,37 @@
   gap: 6px;
 }
 
+.inputWrap {
+  position: relative;
+}
+
+.inputIconLeft,
+.inputIconRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: #c9c8ce;
+  pointer-events: none;
+  display: inline-flex;
+}
+
+.inputIconLeft {
+  left: 12px;
+}
+
+.inputIconRight {
+  right: 12px;
+}
+
+.inputIconLeft svg,
+.inputIconRight svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
 .label {
   font-size: 14px;
   color: var(--text-h);
@@ -39,13 +70,14 @@
 
 .input {
   font: inherit;
-  padding: 10px 12px;
+  padding: 10px 40px 10px 40px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
   color: var(--text-h);
   box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
 }
 
 .input:hover {
