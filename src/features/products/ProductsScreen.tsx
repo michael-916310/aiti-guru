@@ -253,7 +253,9 @@ export function ProductsScreen() {
         aria-busy={fetching}
         aria-label="Загрузка товаров"
       >
-        <div className={styles.progressIndeterminate} />
+        {showTopProgress || showBlockingLoader ? (
+          <div className={styles.progressIndeterminate} />
+        ) : null}
       </div>
 
       <header className={styles.topBar}>
@@ -346,8 +348,10 @@ export function ProductsScreen() {
       ) : null}
 
       {showBlockingLoader ? (
-        <div className={styles.blocking}>
-          <p>Загрузка списка…</p>
+        <div className={styles.blockingWrap}>
+          <div className={styles.blocking}>
+            <p>Загрузка списка…</p>
+          </div>
         </div>
       ) : error && !products.length ? (
         <div className={styles.blocking}>

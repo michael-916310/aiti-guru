@@ -6,6 +6,7 @@
   --products-search-bg: #f3f4f6;
   --products-muted-bg: #f0f0f3;
 
+  position: relative;
   text-align: left;
 }
 
@@ -16,24 +17,28 @@
   }
 }
 
+/* Overlay: не занимает место в потоке — контент не прыгает при появлении */
 .progressTrack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
   width: 100%;
   height: 0;
-  margin-bottom: 0;
+  margin: 0;
   background: var(--border);
   overflow: hidden;
   border-radius: 2px;
   opacity: 0;
   pointer-events: none;
   transition:
-    height 0.2s,
-    opacity 0.2s,
-    margin-bottom 0.2s;
+    height 0.2s ease-out,
+    opacity 0.2s ease-out;
 }
 
 .progressTrackVisible {
   height: 3px;
-  margin-bottom: 16px;
   opacity: 1;
 }
 
@@ -418,6 +423,14 @@
   padding: 0;
 }
 
+/* Резерв высоты при первой загрузке — меньше скачок, когда приходит таблица */
+.blockingWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: min(560px, calc(100svh - 260px));
+}
+
 .blocking {
   display: flex;
   flex-direction: column;
@@ -426,6 +439,10 @@
   gap: 16px;
   min-height: 200px;
   color: var(--text);
+}
+
+.blockingWrap .blocking {
+  min-height: 0;
 }
 
 .errorBox {
