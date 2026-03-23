@@ -3,8 +3,17 @@
   --products-blue: #2e3deb;
   --products-blue-hover: #2636d4;
   --products-blue-ring: rgba(46, 61, 235, 0.22);
+  --products-search-bg: #f3f4f6;
+  --products-muted-bg: #f0f0f3;
 
   text-align: left;
+}
+
+@media (prefers-color-scheme: dark) {
+  .root {
+    --products-search-bg: #25262e;
+    --products-muted-bg: transparent;
+  }
 }
 
 .progressTrack {
@@ -45,51 +54,65 @@
   }
 }
 
-.headerRow {
-  display: flex;
-  flex-wrap: wrap;
+.topBar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 20px 24px;
+  padding: 18px 22px;
+  margin-bottom: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
 }
 
 .title {
   font-family: var(--heading);
-  font-size: 28px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--text-h);
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
   margin: 0;
+  white-space: nowrap;
 }
 
-.toolbar {
+.searchColumn {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px;
+  justify-content: center;
+  min-width: 0;
 }
 
-.searchWrap {
+.searchField {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+}
+
+.searchIconWrap {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  align-items: center;
-  min-width: 200px;
-  flex: 1 1 220px;
-  max-width: 360px;
+  color: #9ca3af;
+  pointer-events: none;
 }
 
 .searchInput {
   font: inherit;
   font-size: 14px;
   width: 100%;
-  padding: 10px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
+  box-sizing: border-box;
+  padding: 11px 14px 11px 42px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--products-search-bg);
   color: var(--text-h);
   transition:
     border-color 0.2s,
-    box-shadow 0.2s;
+    box-shadow 0.2s,
+    background-color 0.2s;
 }
 
 .searchInput::placeholder {
@@ -98,20 +121,145 @@
 }
 
 .searchInput:hover {
-  border-color: rgba(46, 61, 235, 0.25);
+  border-color: rgba(46, 61, 235, 0.12);
 }
 
 .searchInput:focus {
   outline: none;
-  border-color: rgba(46, 61, 235, 0.55);
-  box-shadow: 0 0 0 3px rgba(46, 61, 235, 0.18);
+  border-color: rgba(46, 61, 235, 0.45);
+  background: var(--bg);
+  box-shadow: 0 0 0 3px rgba(46, 61, 235, 0.14);
+}
+
+.topBarIcons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.headerDivider {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  margin-right: 10px;
+  margin-left: 4px;
+  flex-shrink: 0;
+}
+
+.headerIconBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-h);
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.headerIconBtn:hover {
+  background: rgba(46, 61, 235, 0.08);
+  color: var(--products-blue);
+}
+
+.headerIconBtn:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.iconBtnInner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notifBadge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--products-blue);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.subHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.subTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.subActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.iconSquareBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    opacity 0.2s;
+}
+
+.iconSquareBtn:hover:not(:disabled) {
+  border-color: rgba(46, 61, 235, 0.35);
+  color: var(--products-blue);
+}
+
+.iconSquareBtn:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.iconSquareBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .addBtn {
   font: inherit;
   font-size: 14px;
   font-weight: 600;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border: 1px solid var(--products-blue);
   border-radius: 8px;
   background: var(--products-blue);
@@ -383,24 +531,53 @@
 }
 
 @media (max-width: 900px) {
-  .headerRow {
-    margin-bottom: 16px;
+  .topBar {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 16px;
   }
 
-  .toolbar {
+  .title {
+    font-size: 20px;
+  }
+
+  .searchColumn {
+    justify-content: stretch;
+    order: 2;
+  }
+
+  .searchField {
+    max-width: none;
+  }
+
+  .topBarIcons {
+    order: 3;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 4px;
+    border-top: 1px solid var(--border);
+    margin: 0 -4px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .headerDivider {
+    display: none;
+  }
+
+  .subHeader {
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  .subActions {
     width: 100%;
     justify-content: flex-start;
   }
 
-  .searchWrap {
-    min-width: 100%;
-    max-width: none;
-    flex-basis: 100%;
-  }
-
-  .addBtn,
-  .refreshBtn {
+  .addBtn {
     flex: 1 1 auto;
+    min-width: 0;
   }
 
   .th,

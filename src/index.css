@@ -101,6 +101,16 @@ p {
   box-sizing: border-box;
 }
 
+.page--products {
+  background-color: #f0f0f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page--products {
+    background-color: transparent;
+  }
+}
+
 .page--centered {
   display: flex;
   flex-direction: column;

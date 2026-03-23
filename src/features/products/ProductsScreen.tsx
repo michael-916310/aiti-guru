@@ -6,6 +6,148 @@ import { AddProductModal } from './AddProductModal'
 import { useProducts } from './useProducts'
 import styles from './ProductsPage.module.css'
 
+function IconGlobe() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden>
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function IconBell() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden>
+      <path
+        d="M12 3a5 5 0 0 0-5 5v3.5L5 17h14l-2-5.5V8a5 5 0 0 0-5-5z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10 19a2 2 0 0 0 4 0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function IconMail() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden>
+      <rect
+        x="3"
+        y="5"
+        width="18"
+        height="14"
+        rx="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M3 7l9 6 9-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function IconSliders() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden>
+      <path
+        d="M4 7h4M10 7h10M4 12h10M16 12h4M4 17h7M13 17h7"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <circle cx="9" cy="7" r="1.8" fill="currentColor" />
+      <circle cx="15" cy="12" r="1.8" fill="currentColor" />
+      <circle cx="11" cy="17" r="1.8" fill="currentColor" />
+    </svg>
+  )
+}
+
+function IconSearch() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+      <circle
+        cx="11"
+        cy="11"
+        r="7"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M20 20l-4.3-4.3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+function IconRefresh() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+      <path
+        d="M21 12a9 9 0 1 1-2.64-6.36"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M21 3v6h-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function IconFilter() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
+      <path
+        d="M4 6h16M7 12h10M10 18h4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
 type SortField = 'price' | 'rating'
 
 function sortProducts(
@@ -114,34 +256,85 @@ export function ProductsScreen() {
         <div className={styles.progressIndeterminate} />
       </div>
 
-      <div className={styles.headerRow}>
+      <header className={styles.topBar}>
         <h1 className={styles.title}>Товары</h1>
-        <div className={styles.toolbar}>
-          <div className={styles.searchWrap}>
+        <div className={styles.searchColumn}>
+          <div className={styles.searchField}>
+            <span className={styles.searchIconWrap}>
+              <IconSearch />
+            </span>
             <input
               type="search"
               className={styles.searchInput}
-              placeholder="Поиск"
+              placeholder="Найти"
               value={searchInput}
               onChange={(ev) => setSearchInput(ev.target.value)}
-              aria-label="Поиск товаров"
+              aria-label="Найти товары"
               autoComplete="off"
             />
           </div>
+        </div>
+        <div className={styles.topBarIcons}>
+          <span className={styles.headerDivider} aria-hidden />
+          <button
+            type="button"
+            className={styles.headerIconBtn}
+            aria-label="Язык"
+          >
+            <IconGlobe />
+          </button>
+          <button
+            type="button"
+            className={styles.headerIconBtn}
+            aria-label="Уведомления, 12 непрочитанных"
+          >
+            <span className={styles.iconBtnInner}>
+              <IconBell />
+              <span className={styles.notifBadge}>12</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            className={styles.headerIconBtn}
+            aria-label="Сообщения"
+          >
+            <IconMail />
+          </button>
+          <button
+            type="button"
+            className={styles.headerIconBtn}
+            aria-label="Настройки"
+          >
+            <IconSliders />
+          </button>
+        </div>
+      </header>
+
+      <div className={styles.subHeader}>
+        <span className={styles.subTitle}>Все позиции</span>
+        <div className={styles.subActions}>
+          <button
+            type="button"
+            className={styles.iconSquareBtn}
+            onClick={() => void refetch()}
+            disabled={fetching}
+            aria-label="Обновить список"
+          >
+            <IconRefresh />
+          </button>
+          <button
+            type="button"
+            className={styles.iconSquareBtn}
+            aria-label="Фильтр"
+          >
+            <IconFilter />
+          </button>
           <button
             type="button"
             className={styles.addBtn}
             onClick={() => setAddOpen(true)}
           >
-            Добавить
-          </button>
-          <button
-            type="button"
-            className={styles.refreshBtn}
-            onClick={() => void refetch()}
-            disabled={fetching}
-          >
-            Обновить
+            + Добавить
           </button>
         </div>
       </div>
