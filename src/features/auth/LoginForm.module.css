@@ -1,0 +1,150 @@
+/* Primary blue from product mockup (replaces global purple accent on this screen) */
+.wrap {
+  --login-blue: #2e3deb;
+  --login-blue-hover: #2636d4;
+  --login-blue-ring: rgba(46, 61, 235, 0.22);
+
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.title {
+  font-family: var(--heading);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-h);
+  letter-spacing: -0.5px;
+  margin: 0 0 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.input {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:hover {
+  border-color: rgba(46, 61, 235, 0.35);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--login-blue);
+  box-shadow: 0 0 0 3px var(--login-blue-ring);
+}
+
+.inputError {
+  border-color: #dc2626;
+}
+
+.inputError:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.fieldError {
+  font-size: 13px;
+  color: #dc2626;
+  margin: 0;
+}
+
+.formError {
+  font-size: 14px;
+  color: #dc2626;
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+
+.remember input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--login-blue);
+  cursor: pointer;
+}
+
+.createLink {
+  font-size: 14px;
+  color: var(--login-blue);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.createLink:hover {
+  color: var(--login-blue-hover);
+}
+
+.submit {
+  font: inherit;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--login-blue);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--login-blue-hover);
+}
+
+.submit:focus-visible {
+  outline: 2px solid var(--login-blue);
+  outline-offset: 2px;
+}
+
+.submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
