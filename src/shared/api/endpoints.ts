@@ -18,6 +18,7 @@ export interface Product {
   title: string
   price: number
   rating: number
+  brand?: string
 }
 
 export interface ProductsResponse {
@@ -33,8 +34,13 @@ export const authApi = {
   },
 }
 
+export interface ProductsPageParams {
+  limit: number
+  skip: number
+}
+
 export const productsApi = {
-  getAll() {
-    return httpClient.get<ProductsResponse>('/products')
+  getPage(params: ProductsPageParams) {
+    return httpClient.get<ProductsResponse>('/products', { params })
   },
 }

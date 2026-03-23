@@ -1,0 +1,301 @@
+/* Align primary actions with login mockup */
+.root {
+  --products-blue: #2e3deb;
+  --products-blue-hover: #2636d4;
+  --products-blue-ring: rgba(46, 61, 235, 0.22);
+
+  text-align: left;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 0;
+  margin-bottom: 0;
+  background: var(--border);
+  overflow: hidden;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    height 0.2s,
+    opacity 0.2s,
+    margin-bottom 0.2s;
+}
+
+.progressTrackVisible {
+  height: 3px;
+  margin-bottom: 16px;
+  opacity: 1;
+}
+
+.progressIndeterminate {
+  height: 100%;
+  width: 40%;
+  background: var(--products-blue);
+  border-radius: 2px;
+  animation: productsIndeterminate 1s ease-in-out infinite;
+}
+
+@keyframes productsIndeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+.headerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: var(--heading);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-h);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.refreshBtn {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    opacity 0.2s;
+}
+
+.refreshBtn:hover:not(:disabled) {
+  border-color: rgba(46, 61, 235, 0.35);
+}
+
+.refreshBtn:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.refreshBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 500;
+  white-space: nowrap;
+  background: var(--code-bg);
+}
+
+.thButton {
+  font: inherit;
+  font-weight: 500;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+}
+
+.thButton:hover {
+  color: var(--text-h);
+}
+
+.thButton:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.sortHint {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-h);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child .td {
+  border-bottom: none;
+}
+
+.ratingLow {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.actionsCell {
+  width: 48px;
+  text-align: center;
+}
+
+.menuStub {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: default;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding: 0;
+}
+
+.blocking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 200px;
+  color: var(--text);
+}
+
+.errorBox {
+  font-size: 14px;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+  margin-bottom: 16px;
+}
+
+.empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.paginationFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 4px;
+}
+
+.paginationSummary {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageArrow {
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    opacity 0.2s;
+}
+
+.pageArrow:hover:not(:disabled) {
+  border-color: rgba(46, 61, 235, 0.35);
+}
+
+.pageArrow:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.pageArrow:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pageNum {
+  composes: pageArrow;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 36px;
+}
+
+.pageNumActive {
+  composes: pageNum;
+  background: var(--products-blue);
+  border-color: var(--products-blue);
+  color: #fff;
+}
+
+.pageNumActive:hover:not(:disabled) {
+  border-color: var(--products-blue-hover);
+  background: var(--products-blue-hover);
+}
+
+.pageNum:disabled {
+  opacity: 1;
+}
+
+.pageNumActive:disabled {
+  opacity: 1;
+  cursor: wait;
+}
