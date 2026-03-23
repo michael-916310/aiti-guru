@@ -380,26 +380,8 @@ export function ProductsScreen() {
               <thead>
                 <tr>
                   <th className={styles.th}>Наименование</th>
-                  <th className={styles.th}>
-                    <button
-                      type="button"
-                      className={styles.thButton}
-                      onClick={() => onSortClick('price')}
-                      aria-sort={
-                        sortField === 'price'
-                          ? sortDir === 'asc'
-                            ? 'ascending'
-                            : 'descending'
-                          : 'none'
-                      }
-                    >
-                      <SortLabel
-                        field="price"
-                        activeField={sortField}
-                        dir={sortDir}
-                      />
-                    </button>
-                  </th>
+                  <th className={styles.th}>Вендор</th>
+                  <th className={styles.th}>Артикул</th>
                   <th className={styles.th}>
                     <button
                       type="button"
@@ -420,22 +402,35 @@ export function ProductsScreen() {
                       />
                     </button>
                   </th>
-                  <th className={styles.th}>Вендор</th>
-                  <th className={styles.th}>Артикул</th>
-                  <th className={styles.th} aria-label="Действия" />
+                  <th className={styles.th}>
+                    <button
+                      type="button"
+                      className={styles.thButton}
+                      onClick={() => onSortClick('price')}
+                      aria-sort={
+                        sortField === 'price'
+                          ? sortDir === 'asc'
+                            ? 'ascending'
+                            : 'descending'
+                          : 'none'
+                      }
+                    >
+                      <SortLabel
+                        field="price"
+                        activeField={sortField}
+                        dir={sortDir}
+                      />
+                    </button>
+                  </th>
+                  <th className={styles.th}>Количество</th>
                 </tr>
               </thead>
               <tbody>
                 {sorted.map((p) => (
                   <tr key={p.id}>
                     <td className={styles.td}>{p.title}</td>
-                    <td className={styles.td}>
-                      {p.price.toLocaleString('ru-RU', {
-                        style: 'currency',
-                        currency: 'USD',
-                        maximumFractionDigits: 2,
-                      })}
-                    </td>
+                    <td className={styles.td}>{p.brand ?? '—'}</td>
+                    <td className={styles.td}>{p.sku ?? '—'}</td>
                     <td className={styles.td}>
                       <span
                         className={
@@ -450,13 +445,14 @@ export function ProductsScreen() {
                         {p.rating.toFixed(1)}
                       </span>
                     </td>
-                    <td className={styles.td}>{p.brand ?? '—'}</td>
-                    <td className={styles.td}>{p.sku ?? '—'}</td>
-                    <td className={`${styles.td} ${styles.actionsCell}`}>
-                      <span className={styles.menuStub} title="">
-                        ···
-                      </span>
+                    <td className={styles.td}>
+                      {p.price.toLocaleString('ru-RU', {
+                        style: 'currency',
+                        currency: 'USD',
+                        maximumFractionDigits: 2,
+                      })}
                     </td>
+                    <td className={styles.td}>{p.quantity ?? '—'}</td>
                   </tr>
                 ))}
               </tbody>

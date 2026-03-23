@@ -18,6 +18,7 @@ export interface Product {
   title: string
   price: number
   rating: number
+  quantity?: number
   brand?: string
   /** Present on some API products; used for locally added rows */
   sku?: string
@@ -51,6 +52,10 @@ function mapProductDto(raw: Record<string, unknown>): Product {
     title: String(raw.title ?? ''),
     price: Number(raw.price ?? 0),
     rating: Number(raw.rating ?? 0),
+    quantity:
+      typeof raw.stock === 'number' && Number.isFinite(raw.stock)
+        ? Number(raw.stock)
+        : undefined,
     brand:
       raw.brand != null && String(raw.brand).trim() !== ''
         ? String(raw.brand)

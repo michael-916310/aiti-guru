@@ -63,6 +63,7 @@ export function AddProductModal({
       brand: b,
       sku: s,
       rating: 4.5,
+      quantity: 0,
     })
     reset()
     onClose()
