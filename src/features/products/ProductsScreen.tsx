@@ -423,6 +423,10 @@ export function ProductsScreen() {
                     </button>
                   </th>
                   <th className={styles.th}>Количество</th>
+                  <th
+                    className={`${styles.th} ${styles.actionsCell}`}
+                    aria-label="Действия"
+                  />
                 </tr>
               </thead>
               <tbody>
@@ -453,6 +457,20 @@ export function ProductsScreen() {
                       })}
                     </td>
                     <td className={styles.td}>{p.quantity ?? '—'}</td>
+                    <td className={`${styles.td} ${styles.actionsCell}`}>
+                      <button
+                        type="button"
+                        className={styles.menuStub}
+                        aria-label="Дополнительные действия"
+                        tabIndex={-1}
+                      >
+                        <span className={styles.menuDots} aria-hidden>
+                          <span className={styles.menuDot} />
+                          <span className={styles.menuDot} />
+                          <span className={styles.menuDot} />
+                        </span>
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -403,24 +403,54 @@
 }
 
 .actionsCell {
-  width: 48px;
+  width: 52px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .menuStub {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  border: none;
-  background: transparent;
-  color: var(--text);
-  cursor: default;
-  font-size: 18px;
-  letter-spacing: 2px;
+  width: 36px;
+  height: 36px;
+  margin: 0;
   padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: #9ca3af;
+  cursor: default;
+  font: inherit;
+  vertical-align: middle;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+}
+
+.menuStub:hover {
+  border-color: rgba(46, 61, 235, 0.25);
+  color: var(--text);
+}
+
+.menuStub:focus-visible {
+  outline: 2px solid var(--products-blue);
+  outline-offset: 2px;
+}
+
+.menuDots {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+
+.menuDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
 /* Резерв высоты при первой загрузке — меньше скачок, когда приходит таблица */
