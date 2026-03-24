@@ -233,17 +233,6 @@ export function ProductsScreen() {
 
   return (
     <div className={styles.root}>
-      <div
-        className={`${styles.progressTrack} ${showTopProgress || showBlockingLoader ? styles.progressTrackVisible : ''}`}
-        role="progressbar"
-        aria-busy={fetching}
-        aria-label="Загрузка товаров"
-      >
-        {showTopProgress || showBlockingLoader ? (
-          <div className={styles.progressIndeterminate} />
-        ) : null}
-      </div>
-
       <header className={styles.topBar}>
         <h1 className={styles.title}>Товары</h1>
         <div className={styles.searchColumn}>
@@ -328,6 +317,14 @@ export function ProductsScreen() {
 
       {showBlockingLoader ? (
         <div className={styles.blockingWrap}>
+          <div
+            className={`${styles.progressTrack} ${styles.progressTrackVisible}`}
+            role="progressbar"
+            aria-busy={fetching}
+            aria-label="Загрузка товаров"
+          >
+            <div className={styles.progressIndeterminate} />
+          </div>
           <div className={styles.blocking}>
             <p>Загрузка списка…</p>
           </div>
@@ -355,6 +352,16 @@ export function ProductsScreen() {
       ) : (
         <>
           <div className={styles.tableWrap}>
+            <div
+              className={`${styles.progressTrack} ${showTopProgress ? styles.progressTrackVisible : ''}`}
+              role="progressbar"
+              aria-busy={fetching}
+              aria-label="Загрузка товаров"
+            >
+              {showTopProgress ? (
+                <div className={styles.progressIndeterminate} />
+              ) : null}
+            </div>
             <table className={styles.table}>
               <thead>
                 <tr>
