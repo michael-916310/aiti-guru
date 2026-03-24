@@ -134,20 +134,6 @@ function IconRefresh() {
   )
 }
 
-function IconFilter() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
-      <path
-        d="M4 6h16M7 12h10M10 18h4"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
-
 type SortField = 'price' | 'rating'
 
 function sortProducts(
@@ -195,7 +181,7 @@ function SortLabel({
   const arrow = !active ? '↕' : dir === 'asc' ? '↑' : '↓'
   return (
     <>
-      {field === 'price' ? 'Цена' : 'Рейтинг'}
+      {field === 'price' ? 'Цена' : 'Оценка'}
       <span className={styles.sortHint} aria-hidden>
         {arrow}
       </span>
@@ -323,13 +309,6 @@ export function ProductsScreen() {
             aria-label="Обновить список"
           >
             <IconRefresh />
-          </button>
-          <button
-            type="button"
-            className={styles.iconSquareBtn}
-            aria-label="Фильтр"
-          >
-            <IconFilter />
           </button>
           <button
             type="button"
